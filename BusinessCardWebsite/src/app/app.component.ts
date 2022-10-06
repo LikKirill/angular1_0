@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-type ButtonTextType = 'Старт' | 'Стоп';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,9 @@ type ButtonTextType = 'Старт' | 'Стоп';
 })
 
 export class AppComponent {
-  public buttonText: ButtonTextType = 'Старт';
+  private readonly _applicationTitle = 'Коннектор';
 
-  public changeButtonText() {
-    this.buttonText = this.buttonText === 'Старт' ? 'Стоп' : 'Старт';
+  constructor(title: Title) {
+    title.setTitle(this._applicationTitle);
   }
 }

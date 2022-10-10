@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'budgetApp';
+  clickButton: string = "Start";
+
+  public changeButtonName(): void {
+    this.clickButton = this.clickButton === "Start" ? "Stop" : "Start";
+  }
 }

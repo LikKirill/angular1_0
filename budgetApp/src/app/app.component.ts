@@ -8,10 +8,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class AppComponent {
   clickButton: string = "Start";
-  title: string = "Коннектор";
+  titleComponent: string = "Коннектор";
   
-  constructor(private titleService: Title){
-    titleService.setTitle(this.title);
+  constructor(private title: Title){
+    title.setTitle(this.titleComponent);
   }
 
   public changeButtonName(): void {

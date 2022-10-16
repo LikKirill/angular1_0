@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+    .error {
+        margin-left: 40%;
+        margin-top: 5%;
+
+        display: inline-block;
+
+        &-image {
+            width: 80px;
+            height: 80px;
+
+            position: relative;
+            top: 100px;
+            left: 250px;
+        }
+
+        &-text {
+            &-code {
+                font-size: 6rem;
+                color: #1F2226;
+                font-weight: 700;
+    
+                text-align: center;
+            }
+
+            &-description {
+                font-size: 2rem;
+                color: lighten(#1F2226, 15%);
+            }
+        }
+
+        .mrx-link {
+            display: inline-block;
+            text-align: center;
+            width: 100%;
+
+            & a {
+                color: #1F2226;
+                font-size: 1rem;
+                font-weight: 400;
+            }
+
+            & a:hover {
+                color: var(--Main2)
+            }
+        }
+    }
+}

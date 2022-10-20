@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'connector';
+  public text: string = 'Test text';
+  public text1: string = 'Test text1';
+
+  public clickBtn(): void {
+    this.text = this.text;
+  }
 }

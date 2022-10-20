@@ -4,14 +4,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ItemComponent } from './pages/item/item.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ItemComponent,
-    NotfoundComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -13,9 +13,25 @@
             <div class="container">
                 <div class="row mt-4 mb-2">
                     <div class="col">
-                        <div class="mrx-link">
-                            <button (click)="routeToItemPage()">Создать</button>
+                        <button (click)="routeToItemPage()">Создать</button>
+                    </div>
+                </div>
+                <div class="row mt-4 mb-2">
+                    <div class="col">
+                        <div class="mrx-checkbox__wrapper">
+                            <label class="mrx-checkbox mrx-checkbox-default">
+                                <input type="checkbox" [checked]="toggleClass" (click)="changeBlock()"/>
+                                <span class="mrx-checkbox__mark"></span>
+                                <span class="mrx-checkbox__label">
+                                    Изменить
+                                </span>
+                            </label>
                         </div>
+                    </div>
+                </div>
+                <div class="row mt-4 mb-2">
+                    <div class="col">
+                        <div class="mb-3" class="red-square" [ngClass]="{'red-square': toggleClass, 'green-circle': !toggleClass}"></div>
                     </div>
                 </div>
             </div>

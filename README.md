@@ -1,1 +1,3 @@
-# angular1_0
+# CONNECTOR #
+*Иванова ЕС*
+`angular lessons`

@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
 
+  public isRedSquare: boolean = false;
+  
   constructor(private router: Router) { }
 
   ngOnInit(): void {

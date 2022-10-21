@@ -1,3 +1,16 @@
 <div class="my-3">
     <button (click)="goToItem()" class="btn mrx-btn-primary">Редактирование</button>
 </div>
+
+<div class="my-3 change-my-checkbox">
+    <input
+        id="myCheck"
+        type="checkbox"
+        [checked]="isRedSquare"
+        (change)="isRedSquare = !isRedSquare"/>        
+        <label  for="myCheck">Change: {{isRedSquare}}</label>
+
+    <div class="my-3">
+        <div [ngClass]="{'red-square': isRedSquare, 'green-circle': !isRedSquare}"></div>
+    </div>
+</div>

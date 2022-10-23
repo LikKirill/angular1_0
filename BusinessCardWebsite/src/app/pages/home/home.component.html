@@ -18,6 +18,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="row mt-4 mb-2">
+                    <div class="col">
+                        <input
+                            id="showShape"
+                            type="checkbox"
+                            [checked]="showRedSquare"
+                            (change)="changeShape()">
+                        <label for="showShape">Изменить фигуру</label>
+                        <div class="shape" [ngClass]="shapeClass"></div>
+                    </div>
+                </div>
             </div>
         </main>
     </div>

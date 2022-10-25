@@ -1,40 +1,37 @@
-<div class="page-wrapper minfin-theme PtSans minfin">
-    <div class="page-container page-main">
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <img src="./assets/image/logo.png" alt="logo">
-                    </div>
-                </div>
+<div class="container">
+    <div class="row mt-4 mb-2">
+        <div class="col">
+           <!--  <button (click)="routeToItemPage()">Создать</button> -->
+            <app-button 
+                customClasses="mr-2"
+                text="Создать" 
+                (click)="routeToItemPage()" 
+            ></app-button>
+            <app-button 
+                text="Редактировать" 
+                (click)="routeToItemPage()" 
+                (mouseEnter)="logger($event)"
+            ></app-button>
+        </div>
+    </div>
+    <div class="row mt-4 mb-2">
+        <div class="col">
+            <div class="mrx-checkbox__wrapper">
+                <label class="mrx-checkbox mrx-checkbox-default">
+                    <input type="checkbox" [checked]="toggleClass" (click)="changeBlock()"/>
+                    <span class="mrx-checkbox__mark"></span>
+                    <span class="mrx-checkbox__label">
+                        Изменить
+                    </span>
+                </label>
             </div>
-        </header>
-        <main class="layout">
-            <div class="container">
-                <div class="row mt-4 mb-2">
-                    <div class="col">
-                        <button (click)="routeToItemPage()">Создать</button>
-                    </div>
-                </div>
-                <div class="row mt-4 mb-2">
-                    <div class="col">
-                        <div class="mrx-checkbox__wrapper">
-                            <label class="mrx-checkbox mrx-checkbox-default">
-                                <input type="checkbox" [checked]="toggleClass" (click)="changeBlock()"/>
-                                <span class="mrx-checkbox__mark"></span>
-                                <span class="mrx-checkbox__label">
-                                    Изменить
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4 mb-2">
-                    <div class="col">
-                        <div class="mb-3" class="red-square" [ngClass]="{'red-square': toggleClass, 'green-circle': !toggleClass}"></div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
+    </div>
+    <div class="row mt-4 mb-2">
+        <div class="col">
+            <div class="mb-3" class="red-square" [ngClass]="toggleClass ? 'red-square' : 'green-circle'"></div>
+        </div>
     </div>
 </div>
+            
+        

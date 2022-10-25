@@ -25,4 +25,8 @@ export class HomeComponent implements OnInit {
   public changeBlock(): void {
     this.toggleClass = !this.toggleClass;
   }
+
+  public logger(event: string): void {
+    console.log(event);
+  }
 }

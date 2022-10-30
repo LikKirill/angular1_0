@@ -3,13 +3,21 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public text: string = 'Test text';
-  public text1: string = 'Test text1';
+  constructor() {
+    this.text = this.label1;
+  }
+
+  public text: string;
+  private readonly label1: string = 'Start';
+  private readonly label2: string = 'Stop';
 
   public clickBtn(): void {
-    this.text = this.text;
+    if (this.text == this.label1)
+      this.text = this.label2;
+    else
+      this.text = this.label1;
   }
 }

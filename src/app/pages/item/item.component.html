@@ -1,16 +1,10 @@
 <div class="container">
     <div class="row mt-4 mb-2">
         <div class="col">
-            <div class="mrx-link">
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12.6666 8.00065L3.33325 8.00065" stroke-width="0.999998"
-                        stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M8.00015 12.667L3.3335 8.00034L8.00015 3.33368" stroke-width="0.999998"
-                        stroke-linecap="round" stroke-linejoin="round"></path>
-                </svg>
-                <a routerLink="/" class="mrx-link--text">Назад</a>
-            </div>
+            <mrx-breadcrumbs 
+            type="link"
+            [item]="{text: 'Назад', path: '/', isShowArrow: true}"
+            ></mrx-breadcrumbs>
         </div>
     </div>
 
@@ -43,65 +37,22 @@
                 </div>
 
                 <div class="row">
-                    <div class="col col-12 col-md-6 mb-3">
-                        <label class="label-with-tooltip custom-label">
-                            Наименование
-                            <span class="required-active">*</span>
-                        </label>
-                        <div class="mrx-input-text">
-                            <div class="mrx-input-text__wrapper">
-                                <input type="text" />
-                            </div>
-                        </div>
+                    <div class="col col-12 col-md-6 mb-3">                       
+                       <mrx-label [required]="true">Наименование</mrx-label>                        
+                        <mrx-input-text [(ngModel)]="formModel.name"></mrx-input-text>
                     </div>
 
                     <div class="col col-12 col-md-6 mb-3">
                         <div class="row mb-3">
                             <div class="col">
-                                <label class="label-with-tooltip custom-label">
-                                    Время
-                                    <span class="required-active">*</span>
-                                </label>
-                                <div class="mrx-input-datepicker">
-                                    <div class="mrx-input-datepicker__wrapper">
-                                        <input type="text" />
-
-                                        <div class="inputbox-icons">
-                                            <span class="inputbox-icon">
-                                                <svg width="24" height="25" viewBox="0 0 24 25"
-                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect x="3" y="4.00604" width="18" height="18"
-                                                        rx="2" stroke="#282828" stroke-width="1.5"
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M16 2.00604V6.00604" stroke="#282828"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M8 2.00604V6.00604" stroke="#282828"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                    <path d="M3 10.006H21" stroke="#282828"
-                                                        stroke-width="1.5" stroke-linecap="round"
-                                                        stroke-linejoin="round" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
+                                <mrx-label [required]="true">Время</mrx-label>  
+                                <mrx-input-datetime [(ngModel)]="formModel.date"></mrx-input-datetime>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col">
-                                <div #input class="mrx-checkbox__wrapper">
-                                    <label class="mrx-checkbox mrx-checkbox-default">
-                                        <input type="checkbox" />
-                                        <span class="mrx-checkbox__mark"></span>
-                                        <span class="mrx-checkbox__label">
-                                            Повторять
-                                        </span>
-                                    </label>
-                                </div>
+                                <mrx-checkbox  [(ngModel)]="formModel.repeat">Повторять</mrx-checkbox>
                             </div>
                         </div>
                     </div>
@@ -109,14 +60,13 @@
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="label-with-tooltip custom-label">
-                            Наименование
-                        </label>
-                        <div class="mrx-input-text">
-                            <div class="mrx-input-text__wrapper">
-                                <input type="text" />
-                            </div>
-                        </div>
+                        <mrx-label>Участники</mrx-label> 
+                        <mrx-input-select 
+                            [items]="selectItems" 
+                            [multiple]="true" 
+                            [(ngModel)]="formModel.members"
+                            (ngModelChange)="changeMembers($event)"
+                        ></mrx-input-select>
                     </div>
                 </div>
 
@@ -126,97 +76,41 @@
                     </div>
                 </div>
 
-                <div class="row mb-3">
+                <div class="row mb-3" *ngFor="let question of formModel.questions; let index = index; trackBy: trackByFn">
                     <div class="col">
-                        <label class="label-with-tooltip custom-label">
-                            Вопрос 1
-                        </label>
-                        <div class="mrx-input-textarea">
-                            <div class="mrx-input-text__wrapper">
-                                <textarea></textarea>
-                            </div>
-                        </div>
+                        <mrx-label>Вопрос {{index+1}}</mrx-label> 
+                        <mrx-input-textarea [(ngModel)]="formModel.questions[index]"></mrx-input-textarea>                        
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col">
-                        <label class="label-with-tooltip custom-label">
-                            Вопрос 2
-                        </label>
-                        <div class="mrx-input-textarea">
-                            <div class="mrx-input-text__wrapper">
-                                <textarea></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col">
-                        <label class="label-with-tooltip custom-label">
-                            Вопрос 3
-                        </label>
-                        <div class="mrx-input-textarea">
-                            <div class="mrx-input-text__wrapper">
-                                <textarea></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col">
-                        <label class="label-with-tooltip custom-label">
-                            Вопрос 4
-                        </label>
-                        <div class="mrx-input-textarea">
-                            <div class="mrx-input-text__wrapper">
-                                <textarea></textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row mb-3">
-                    <div class="col">
-                        <button class="mrx-btn mrx-btn-secondary mrx-btn-md icon-left">
+                        <mrx-button type="secondary" (click)="addQuestion()" [disabled] = "isQuestionsCompleted">
                             <span class="icon-wrapper">
-                                <svg width="24" height="25" viewBox="0 0 24 25" fill="none"
+                                <svg class="stroke" width="24" height="25" viewBox="0 0 24 25" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 12.006H4" stroke="#2a6ab8" stroke-width="1.5"
+                                    <path d="M20 12.006H4" stroke-width="1.5"
                                         stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M12 4.00604V20.006" stroke="#2a6ab8" stroke-width="1.5"
+                                    <path d="M12 4.00604V20.006" stroke-width="1.5"
                                         stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </span>
                             Вопрос
-                        </button>
+                        </mrx-button>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col col-12 col-md-6">
-                        <label class="label-with-tooltip custom-label">
-                            Вопрос 4
-                        </label>
-                        <div class="mrx-input-text">
-                            <div class="mrx-input-text__wrapper">
-                                <input type="text" />
-                            </div>
-                        </div>
+                        <mrx-label>Ответственный за протокол</mrx-label>
+                        <mrx-input-select [items]="selectItems" [(ngModel)]="formModel.portalManager"></mrx-input-select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <button class="mrx-btn mrx-btn-secondary mrx-btn-md">
-                            Отменить
-                        </button>
-
-                        <button class="mrx-btn mrx-btn-primary mrx-btn-md">
-                            Сохранить
-                        </button>
+                        <mrx-button type="secondary" customClasses="mr-3">Отменить</mrx-button>
+                        <mrx-button (click)="logger()">Сохранить</mrx-button>
                     </div>
                 </div>
             </div>

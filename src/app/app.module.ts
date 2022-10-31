@@ -7,6 +7,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { ItemComponent } from './pages/item/item.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { HeaderComponent } from './components/header/header.component';
+import { MyrtexLibModule } from 'myrtex-lib';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -17,9 +20,12 @@ import { HeaderComponent } from './components/header/header.component';
     HeaderComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,   
+    BrowserAnimationsModule, 
     AppRoutingModule,
-    ButtonModule
+    ButtonModule,
+    MyrtexLibModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

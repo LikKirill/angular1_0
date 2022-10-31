@@ -1,0 +1,60 @@
+.mrx-input-datepicker {
+  &__wrapper {
+    position: relative;
+  }
+
+  .inputbox-icons {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-right: 15px;
+  }
+
+  .inputbox-icon {
+    cursor: pointer;
+    &:not(:last-child) {
+      padding-right: 15px;
+    }
+  }
+}
+
+.mrx-input-datepicker {
+  width: 100%;
+  position: relative;
+
+  &__wrapper {
+    position: relative;
+  }
+
+  input {
+    border: 1px solid var(--Stroke);
+    width: 100%;
+    outline: none;
+    transition: 0.2s;
+
+    &:focus {
+      box-shadow: 0px 0px 0px 4px var(--Bg1);
+    }
+
+    &:disabled {
+      background-color: var(--Disabled);
+    }
+  }
+
+  &.mrx-input__readonly {
+    input[type=tel] {
+      &:disabled {
+        background-color: inherit;
+      }
+    }
+  }
+
+  &.mrx-input__readonly {
+    input {
+      background-color: inherit;
+    }
+  }
+}

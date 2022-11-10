@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col">
-            <div class="connector-content">
+            <mrx-content-wrapper type="colored">                
                 <div class="row">
                     <div class="col">
                         <div class="connector-description">
@@ -79,7 +79,20 @@
                 <div class="row mb-3" *ngFor="let question of formModel.questions; let index = index; trackBy: trackByFn">
                     <div class="col">
                         <mrx-label>Вопрос {{index+1}}</mrx-label> 
-                        <mrx-input-textarea [(ngModel)]="formModel.questions[index]"></mrx-input-textarea>                        
+                        <mrx-controls-wrapper>
+                            <mrx-input-textarea [(ngModel)]="formModel.questions[index]"></mrx-input-textarea>
+                            <ng-template #controls>
+                                <mrx-controls-item *ngIf="index>0"  (click)="moveQuestion(index, 'up')">
+                                    <span class="mrx-icon icon-chevron-up icon-font-16"></span>
+                                  </mrx-controls-item>
+                                  <mrx-controls-item *ngIf="index<formModel.questions.length-1" (click)="moveQuestion(index, 'down')">
+                                    <span class="mrx-icon icon-chevron-down icon-font-16"></span>
+                                  </mrx-controls-item>
+                                <mrx-controls-item (click)="deleteQuestion(index)">
+                                    <span class="mrx-icon icon-delete icon-font-16"></span>
+                                </mrx-controls-item>
+                            </ng-template>
+                        </mrx-controls-wrapper>                                               
                     </div>
                 </div>
 
@@ -113,7 +126,7 @@
                         <mrx-button (click)="logger()">Сохранить</mrx-button>
                     </div>
                 </div>
-            </div>
+            </mrx-content-wrapper>
         </div>
     </div>
 </div>

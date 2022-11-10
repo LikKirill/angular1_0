@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
+const MAX_QUESTIONS_SIZE = 5;
+type Movement = 'up' | 'down';
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',
 })
 export class ItemComponent implements OnInit {
+  
   public selectItems = [
     {
       id: 0,
@@ -48,13 +51,32 @@ export class ItemComponent implements OnInit {
   }
 
   public addQuestion(): void {
-    if (this.formModel.questions.length < 5) {
+    if (this.formModel.questions.length < MAX_QUESTIONS_SIZE) {
       this.formModel.questions.push('');
     }
   }
 
+  public deleteQuestion(index: number): void {
+    this.formModel.questions.splice(index, 1);
+  }
+
+  public moveQuestion(index: number, type: Movement): void {
+    const question = this.formModel.questions[index];
+    if (type === 'up') {
+      if (index > 0) {
+        this.formModel.questions.splice(index, 1);
+        this.formModel.questions.splice(index - 1, 0, question);
+      }
+    } else {
+      if (index < MAX_QUESTIONS_SIZE - 1) {
+        this.formModel.questions.splice(index, 1);
+        this.formModel.questions.splice(index + 1, 0, question);
+      }
+    }
+  }
+
   public get isQuestionsCompleted(): boolean {
-    return this.formModel.questions.length >= 5;
+    return this.formModel.questions.length >= MAX_QUESTIONS_SIZE;
   }
 
   public trackByFn(index: number) {

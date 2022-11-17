@@ -15,7 +15,7 @@
 
 <div class="row">
     <div class="col">
-        <div class="connector-content">
+        <mrx-content-wrapper type="colored">
             <div class="row">
                 <div class="col">
                     <div class="connector-description">
@@ -75,10 +75,23 @@
                 </div>
             </div>
 
-            <div class="row mb-3" *ngFor="let item of formModel.questions">
+            <div class="row mb-3" *ngFor="let item of formModel.questions; let i = index;">
                 <div class="col">
                     <mrx-label>{{item.header}}</mrx-label>
-                    <mrx-input-textarea [(ngModel)]="item.answer"></mrx-input-textarea>
+                    <mrx-controls-wrapper>
+                        <mrx-input-textarea [(ngModel)]="item.answer"></mrx-input-textarea>
+                        <ng-template #controls>
+                            <mrx-controls-item *ngIf="formModel.questions.length > 1 && i != 0" (click)="moveItem(i, 'up')">
+                                <span class="mrx-icon icon-chevron-up"></span>
+                            </mrx-controls-item>
+                            <mrx-controls-item *ngIf="i != (formModel.questions.length - 1)" (click)="moveItem(i, 'down')">
+                                <span class="mrx-icon icon-chevron-down"></span>
+                            </mrx-controls-item>
+                            <mrx-controls-item (click)="deleteItem(i)">
+                                <span class="mrx-icon icon-delete"></span>
+                            </mrx-controls-item>
+                        </ng-template>
+                    </mrx-controls-wrapper>                    
                 </div>
             </div>
 
@@ -123,6 +136,6 @@
                     </mrx-button>
                 </div>
             </div>
-        </div>
+        </mrx-content-wrapper>
     </div>
 </div>

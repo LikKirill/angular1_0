@@ -9,13 +9,15 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MyrtexLibModule } from 'myrtex-lib';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ButtonComponent
   ],
   imports: [
     BrowserModule,

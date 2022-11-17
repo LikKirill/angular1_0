@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemComponent implements OnInit {
 
+  private maxQuestion = 5;
   public selectItems = [{
           id: 0, 
           label: 'Маестро'
@@ -60,6 +61,19 @@ export class ItemComponent implements OnInit {
   }
 
   public stopAddQuestion(): boolean{
-    return this.formModel.questions.length >= 5;
+    return this.formModel.questions.length >= this.maxQuestion;
+  }
+
+  public moveItem(i: number, direction: string): void{
+    let element = this.formModel.questions[i];
+    let newIndex = direction === "up" ? (i-1) : (i+1);
+    this.deleteItem(i);
+    this.formModel.questions.splice(newIndex, 0, element);
+    console.log(this.formModel.questions);
+  }
+
+  public deleteItem(i: number): void{
+    this.formModel.questions.splice(i, 1);
+    console.log(this.formModel.questions);
   }
 }

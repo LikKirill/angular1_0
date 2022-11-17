@@ -14,7 +14,11 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToItem(){
+  public goToItem(): void{
     this.router.navigate(["/item"]);
+  }
+
+  public logger(event: string): void{
+    console.log(event);
   }
 }

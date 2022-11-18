@@ -26,8 +26,8 @@ export class ItemComponent implements OnInit {
     ]
 
     public formModel = { 
-      name: 'х/ф "В бой идут одни старики"', 
-      date: '06.12.1973', 
+      name: '', 
+      date: '', 
       repeat: false,
       members:[],
       questions: [{header: 'Вопрос 1', answer: ''}],
@@ -37,10 +37,6 @@ export class ItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  public logger(){
-    console.log(this.formModel);
   }
 
   public changeMembers(elements: any): void {
@@ -75,5 +71,40 @@ export class ItemComponent implements OnInit {
   public deleteItem(i: number): void{
     this.formModel.questions.splice(i, 1);
     console.log(this.formModel.questions);
+  }
+
+  public save(): void{
+    let fields = this.fieldСheck();
+    if(fields.length != 0){
+      alert('Не заполнены поля: ' + fields.toString().replace(',', ', '));
+    }else{
+      fetch('http://localhost:4100/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(this.formModel)
+      }).then(() => {
+        this.formModel = { 
+          name: '', 
+          date: '', 
+          repeat: false,
+          members:[],
+          questions: [{header: '', answer: ''}],
+          responsible: null
+        }
+      })
+    }
+  }
+
+  public fieldСheck(): string[] {
+    let array = [];
+    if(!this.formModel.name){
+      array.push('Наименование');
+    }
+    if(!this.formModel.date){
+      array.push('Время');
+    }
+    return array;
   }
 }

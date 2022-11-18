@@ -10,3 +10,9 @@
         (mouseEnter)="logger($event)">Редактировать
     </app-button>
 </div>
+
+<div class="row">
+    <div class="col-12" *ngFor="let event of events">
+        {{event['name']}}
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,9 +9,18 @@ export class HomeComponent implements OnInit {
 
   public toggleClass = true  
 
+  public events = []
+
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
+    fetch('http://localhost:4100/events').
+    then((res) => {
+      return res.json()
+    })
+    .then((data) => {
+      this.events = data
+    })
   }
 
   get getClasses(): string{

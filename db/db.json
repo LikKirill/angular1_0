@@ -1,0 +1,69 @@
+{
+  "events": [
+    {
+      "name": "test",
+      "date": "2022-11-01T19:00:00.000Z",
+      "repeat": false,
+      "members": [
+        "Ксения Евстифеева"
+      ],
+      "questions": [
+        "fff"
+      ],
+      "portalManager": {
+        "id": 1,
+        "label": "Любовь Скоробач"
+      },
+      "id": 1
+    },
+    {
+      "name": "dtdtdtd",
+      "date": "2022-11-03T19:00:00.000Z",
+      "repeat": false,
+      "members": [],
+      "questions": [
+        ""
+      ],
+      "portalManager": null,
+      "id": 2
+    },
+    {
+      "name": "",
+      "date": "",
+      "repeat": false,
+      "members": [
+        "Игорь Люлюкин"
+      ],
+      "questions": [
+        "dd"
+      ],
+      "portalManager": {
+        "id": 3,
+        "label": "Марина Блинова"
+      },
+      "id": 3
+    },
+    {
+      "name": "",
+      "date": "",
+      "repeat": false,
+      "members": [],
+      "questions": [
+        ""
+      ],
+      "portalManager": null,
+      "id": 4
+    },
+    {
+      "name": "1q23123",
+      "date": "2022-11-09T19:00:00.000Z",
+      "repeat": false,
+      "members": [],
+      "questions": [
+        ""
+      ],
+      "portalManager": null,
+      "id": 5
+    }
+  ]
+}

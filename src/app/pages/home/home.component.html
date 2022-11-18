@@ -27,9 +27,15 @@
             </div>
         </div>
     </div>
-    <div class="row mt-4 mb-2">
+    <div class="row mt-4 mb-3">
         <div class="col">
             <div class="mb-3" class="red-square" [ngClass]="toggleClass ? 'red-square' : 'green-circle'"></div>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col col-12" *ngFor="let event of events">
+            {{event['name']}}
         </div>
     </div>
 </div>

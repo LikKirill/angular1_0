@@ -7,7 +7,6 @@ type Movement = 'up' | 'down';
   templateUrl: './item.component.html',
 })
 export class ItemComponent implements OnInit {
-  
   public selectItems = [
     {
       id: 0,
@@ -81,5 +80,34 @@ export class ItemComponent implements OnInit {
 
   public trackByFn(index: number) {
     return index;
+  }
+
+  public validate() {
+    if (!this.formModel.name || !this.formModel.date) {
+      return false;
+    }
+    return true;
+  }
+  public save(): void {
+    if (this.validate()) {
+      fetch('http://localhost:4100/events', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.formModel),
+      }).then(() => {
+        this.formModel = {
+          name: '',
+          date: '',
+          repeat: false,
+          members: [],
+          questions: [''],
+          portalManager: null,
+        };
+      });
+    }else{
+      alert("Заполните обязательный поля");
+    }
   }
 }

@@ -1,4 +1,9 @@
+import { EventsService } from './../../services/events.service';
 import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs/operators';
+import { EventI } from 'src/app/models/event.model';
+import { MembersService } from 'src/app/services/members.service';
+import { MemberI } from 'src/app/models/member.model';
 
 const MAX_QUESTIONS_SIZE = 5;
 type Movement = 'up' | 'down';
@@ -7,26 +12,7 @@ type Movement = 'up' | 'down';
   templateUrl: './item.component.html',
 })
 export class ItemComponent implements OnInit {
-  public selectItems = [
-    {
-      id: 0,
-      label: 'Игорь Люлюкин',
-    },
-    {
-      id: 1,
-      label: 'Любовь Скоробач',
-    },
-    {
-      id: 2,
-      label: 'Ксения Евстифеева',
-    },
-    {
-      id: 3,
-      label: 'Марина Блинова',
-    },
-  ];
-
-  public formModel = {
+  public formModel: EventI= {
     name: '',
     date: '',
     repeat: false,
@@ -35,17 +21,35 @@ export class ItemComponent implements OnInit {
     portalManager: null,
   };
 
-  constructor() {}
+  constructor(private eventsService: EventsService, private membersService: MembersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.membersService.isLoading = true;
+    this.membersService.getData()
+    .pipe(finalize(() => this.membersService.isLoading = false))
+    .subscribe({
+      next:(data: MemberI[]) => {
+        this.membersService.data = data
+      },
+      error:(e) => console.error(e.message)
+    })  
+  }
+
+  public get getMembers(){
+    return this.membersService.data
+  }
+
+  public get events(){
+    return this.eventsService.events
+  }
 
   public logger(): void {
     console.log(this.formModel);
   }
 
-  public changeMembers(elements: any): void {
-    this.formModel.members = elements.map((item: any) => {
-      return item.label;
+  public changeMembers(elements: MemberI[]): void {
+    this.formModel.members = elements.map((item) => {
+      return item.name;
     });
   }
 
@@ -89,14 +93,9 @@ export class ItemComponent implements OnInit {
     return true;
   }
   public save(): void {
-    if (this.validate()) {
-      fetch('http://localhost:4100/events', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.formModel),
-      }).then(() => {
+    this.eventsService.setEvent(this.formModel)
+    .subscribe({
+      next: (data) => {
         this.formModel = {
           name: '',
           date: '',
@@ -105,9 +104,10 @@ export class ItemComponent implements OnInit {
           questions: [''],
           portalManager: null,
         };
-      });
-    }else{
-      alert("Заполните обязательный поля");
-    }
+      },
+      error:(e) => {
+        console.error(e.message);
+      }
+    })    
   }
 }

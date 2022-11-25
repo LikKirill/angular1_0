@@ -1,5 +1,8 @@
+import { EventsService } from './../../services/events.service';
 import { AfterViewInit, Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
+import { EventI } from 'src/app/models/event.model';
 
 @Component({
   selector: 'app-home',
@@ -9,18 +12,25 @@ export class HomeComponent implements OnInit {
 
   public toggleClass = true  
 
-  public events = []
-
-  constructor(private router: Router) { }
+  constructor(private router: Router, private eventsService: EventsService ) { }
 
   ngOnInit(){
-    fetch('http://localhost:4100/events').
-    then((res) => {
-      return res.json()
-    })
-    .then((data) => {
-      this.events = data
-    })
+    this.eventsService.isLoading = true
+
+    this.eventsService.getEvents()
+    .pipe(finalize(() => this.eventsService.isLoading = false))
+    .subscribe({
+      next:(data: EventI[]) => this.eventsService.events = data,
+      error:(e) => console.error(e.message)
+    })  
+  }
+
+  public get events(){
+    return this.eventsService.events
+  }
+
+  public get isLoading(){
+    return this.eventsService.isLoading
   }
 
   get getClasses(): string{

@@ -62,8 +62,9 @@
                     <div class="col">
                         <mrx-label>Участники</mrx-label> 
                         <mrx-input-select 
-                            [items]="selectItems" 
+                            [items]="getMembers"
                             [multiple]="true" 
+                            bindLabel="name"
                             [(ngModel)]="formModel.members"
                             (ngModelChange)="changeMembers($event)"
                         ></mrx-input-select>
@@ -116,13 +117,18 @@
                 <div class="row mb-3">
                     <div class="col col-12 col-md-6">
                         <mrx-label>Ответственный за протокол</mrx-label>
-                        <mrx-input-select [items]="selectItems" [(ngModel)]="formModel.portalManager"></mrx-input-select>
+                        <mrx-input-select 
+                            [items]="getMembers" 
+                            [(ngModel)]="formModel.portalManager"
+                            bindValue="name"
+                            bindLabel="name"
+                        ></mrx-input-select>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col">
-                        <mrx-button type="secondary" customClasses="mr-3">Отменить</mrx-button>
+                        <mrx-button type="secondary" customClasses="mr-3" (click)="logger()">Отменить</mrx-button>
                         <mrx-button (click)="save()">Сохранить</mrx-button>
                     </div>
                 </div>

@@ -2,11 +2,16 @@
     <div class="row mt-4 mb-2">
         <div class="col">
             <div class="mrx-link">
-                <app-button (click)="routToItemPage()" text="Создать"></app-button>
+                <app-button (click)="routToItemPage()">
+                    Создать
+                    <ng-template #icon>
+                        *
+                    </ng-template>
+                </app-button>
                 <app-button 
                     (mouseEnter)="logger($event)"
-                    [text]="'Редактировать'"
                     [customClasses]="'ml-2'">
+                    Редактировать
                 </app-button>
             </div>
         </div>

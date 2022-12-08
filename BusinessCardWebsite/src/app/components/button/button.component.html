@@ -1,1 +1,3 @@
-<button [class]="getCustomClasses" (mouseenter)="onMouseEnter()">{{text}}</button>
+<button [class]="getCustomClasses" (mouseenter)="onMouseEnter()">
+    <ng-content></ng-content>
+</button>

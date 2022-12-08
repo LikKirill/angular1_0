@@ -1,16 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html'
 })
 export class ButtonComponent implements OnInit {
-
-  @Input()
-  public text: string = '';
-
   @Input()
   public customClasses: string = '';
+
+  @ContentChild('icon')
+  public iconTemplate!: TemplateRef<any>;
 
   @Output()
   mouseEnter: EventEmitter<string> = new EventEmitter();

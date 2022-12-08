@@ -62,4 +62,38 @@ export class ItemComponent implements OnInit {
   public trackByFn(index: number): number {
     return index;
   }
+
+  public deleteQuestion(questionIndex: number): void {
+    this.formModel.questions.splice(questionIndex, 1);
+  }
+
+  public moveUpQuestion(questionIndex: number): void {
+    if (!this.canMoveUpQuestion(questionIndex)) {
+      return;
+    }
+
+    this.replaceQuestions(questionIndex, questionIndex + 1);
+  }
+
+  public moveDownQuestion(questionIndex: number): void {
+    if (!this.canMoveDownQuestion(questionIndex)) {
+      return;
+    }
+
+    this.replaceQuestions(questionIndex, questionIndex - 1);
+  }
+
+  public replaceQuestions(index: number, replacementIndex: number): void {
+    [this.formModel.questions[index], this.formModel.questions[replacementIndex]] =
+    [this.formModel.questions[replacementIndex], this.formModel.questions[index]];
+  }
+
+  public canMoveUpQuestion(index: number) {
+    return !(this.formModel.questions.length - 1 === index ||
+      this.formModel.questions.length === 1);
+  }
+
+  public canMoveDownQuestion(index: number) {
+    return !(index === 0);
+  }
 }

@@ -18,7 +18,7 @@
     "@angular/platform-browser": "^13.3.11",
     "@angular/platform-browser-dynamic": "^13.3.11",
     "@angular/router": "^13.3.11",
-    "myrtex-lib": "^1.2.13",
+    "myrtex-lib": "^1.3.4",
     "ros.grant.common": "^2.0.1487",
     "rxjs": "~6.5.5",
     "tslib": "^2.3.0",

@@ -1,35 +1,25 @@
-<div class="page-wrapper minfin-theme PtSans minfin">
-    <div class="page-container page-main">
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <img src="../assets/images/logo.png" alt="logo">
-                    </div>
-                </div>
+<div class="container">
+    <div class="row mt-4 mb-2">
+        <div class="col">
+            <div class="mrx-link">
+                <app-button (click)="routToItemPage()" text="Создать"></app-button>
+                <app-button 
+                    (mouseEnter)="logger($event)"
+                    [text]="'Редактировать'"
+                    [customClasses]="'ml-2'">
+                </app-button>
             </div>
-        </header>
-        <main class="layout">
-            <div class="container">
-                <div class="row mt-4 mb-2">
-                    <div class="col">
-                        <div class="mrx-link">
-                            <button (click)="routToItemPage()">Создать</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-4 mb-2">
-                    <div class="col">
-                        <input
-                            id="showShape"
-                            type="checkbox"
-                            [checked]="showRedSquare"
-                            (change)="changeShape()">
-                        <label for="showShape">Изменить фигуру</label>
-                        <div class="shape" [ngClass]="shapeClass"></div>
-                    </div>
-                </div>
-            </div>
-        </main>
+        </div>
     </div>
-  </div>
+    <div class="row mt-4 mb-2">
+        <div class="col">
+            <input
+                id="showShape"
+                type="checkbox"
+                [checked]="showRedSquare"
+                (change)="changeShape()">
+            <label for="showShape">Изменить фигуру</label>
+            <div class="shape" [ngClass]="shapeClass"></div>
+        </div>
+    </div>
+</div>

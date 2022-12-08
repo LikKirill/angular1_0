@@ -28,4 +28,8 @@ export class HomeComponent implements OnInit {
   public changeShape(): void {
     this._showRedSquare = !this._showRedSquare;
   }
+
+  public logger(str: string): void {
+    console.log(str);
+  }
 }

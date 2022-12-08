@@ -1,0 +1,33 @@
+.mrx-tooltip-trigger {
+  &.trigger-right {
+    .tooltip-help {
+      font-size: 12px;
+      letter-spacing: -0.363636px;
+      line-height: 1;
+      font-weight: normal;
+      white-space: nowrap;
+      width: 0;
+      transition: .2s;
+      overflow: hidden;
+      color: var(--Main1);
+      z-index: 1;
+    }
+
+    &:hover {
+      .tooltip-help {
+        width: 120px;
+        padding: 0 5px;
+      }
+    }
+
+    @media screen and (max-width: 991px) {
+      background: var(--TooltipBG);
+
+      .tooltip-help {
+        width: 120px;
+        padding: 0 5px;
+      }
+    }
+  }
+
+}

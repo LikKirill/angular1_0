@@ -61,10 +61,10 @@
                 <div class="col">
                     <mrx-label>Участники</mrx-label>
                     <mrx-input-select
-                        [items]="selectItems" 
+                        [items]="members" 
                         [multiple]="true"
                         [(ngModel)]="formModel.members"
-                        (ngModelChange)="changeMembers($event)"
+                        bindValue = 'label'
                     ></mrx-input-select>
                 </div>
             </div>
@@ -116,9 +116,10 @@
                 <div class="col col-12 col-md-6">
                     <mrx-label>Ответственный за протокол</mrx-label>
                     <mrx-input-select
-                        [items]="selectItems" 
+                        [items]="members" 
                         [multiple]="true"
-                        [(ngModel)]="formModel.responsible"
+                        [(ngModel)]="formModel.portalManager"
+                        bindValue = 'label'
                     ></mrx-input-select>
                 </div>
             </div>

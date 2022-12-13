@@ -11,6 +11,12 @@
     </app-button>
 </div>
 
+<div class="row" *ngIf="isLoading" >
+    <div class="col">
+        <div class="d-flex justify-content-center">Загрузка...</div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-12" *ngFor="let event of events">
         {{event['name']}}

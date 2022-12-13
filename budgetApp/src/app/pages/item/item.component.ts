@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EventsService } from 'src/app/services/events.service';
+import { EventI } from 'src/app/models/event.model';
+import { MembersService } from 'src/app/services/members.service';
+import { MemberI } from 'src/app/models/member.model';
 
 @Component({
   selector: 'app-item',
@@ -25,18 +29,34 @@ export class ItemComponent implements OnInit {
       }
     ]
 
-    public formModel = { 
+    public formModel: EventI = { 
       name: '', 
       date: '', 
       repeat: false,
       members:[],
       questions: [{header: 'Вопрос 1', answer: ''}],
-      responsible: null
+      portalManager: null
     }
 
-  constructor() { }
+  constructor(private eventService: EventsService, private memberService: MembersService) { }
 
   ngOnInit(): void {
+    this.getMembers();
+  }
+
+  public get members(){
+    return this.memberService.members;
+  }
+
+  private getMembers(){
+    this.memberService.getMembers()
+    .subscribe({
+      next: (data: MemberI[]) => {
+        this.memberService.members = data;
+      },
+      error: (e) => console.error('e', e.message),
+      complete: () => console.log('complete'),
+    });
   }
 
   public changeMembers(elements: any): void {
@@ -77,24 +97,23 @@ export class ItemComponent implements OnInit {
     let fields = this.fieldСheck();
     if(fields.length != 0){
       alert('Не заполнены поля: ' + fields.toString().replace(',', ', '));
-    }else{
-      fetch('http://localhost:4100/events', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(this.formModel)
-      }).then(() => {
-        this.formModel = { 
-          name: '', 
-          date: '', 
-          repeat: false,
-          members:[],
-          questions: [{header: '', answer: ''}],
-          responsible: null
-        }
-      })
+      return;
     }
+
+    this.eventService.setEvent(this.formModel)
+    .subscribe((data) => { //next
+        console.log('d', data);
+        this.formModel = { 
+                name: '', 
+                date: '', 
+                repeat: false,
+                members:[],
+                questions: [{header: '', answer: ''}],
+                portalManager: null
+              }
+      }, 
+      (e) => console.error(e.message),  //error
+      () => console.log('complete')); //complete
   }
 
   public fieldСheck(): string[] {
